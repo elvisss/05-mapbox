@@ -1,12 +1,26 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <Map />
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Map from '@/components/Map.vue';
+import WebsocketService from './services/webSocketService';
+
+@Component({
+  components: {
+    Map
+  }
+})
+export default class App extends Vue {
+  public ws: WebsocketService;
+ 
+  constructor() {
+    super();
+    this.ws = WebsocketService.instance
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
